@@ -3,6 +3,10 @@ from django.db import models
 from scraping.punto_switcher import from_cyrillic_to_eng
 
 
+def default_urls():
+    return {'work': '', 'rabota': '', 'dou': '', 'hh': ''}
+
+
 class City(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название населенного пункта', unique=True)
     slug = models.CharField(max_length=50, blank=True, unique=True)
@@ -46,10 +50,23 @@ class Vacancy(models.Model):
     language = models.ForeignKey('language', on_delete=models.CASCADE, verbose_name='Язык програмирования')
     timestamp = models.DateField(auto_now_add=True)
 
-
     class Meta:
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
 
     def __str__(self):
         return self.title
+
+
+class Error(models.Model):
+    timestamp = models.DateField(auto_now_add=True)
+    data = models.JSONField()
+
+
+class Url(models.Model):
+    city = models.ForeignKey('City', on_delete=models.CASCADE, verbose_name='Город')
+    language = models.ForeignKey('language', on_delete=models.CASCADE, verbose_name='Язык програмирования')
+    url_data = models.JSONField(default=default_urls)
+
+    class Meta:
+        unique_together = ('city', 'language')

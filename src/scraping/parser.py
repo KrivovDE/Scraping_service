@@ -1,16 +1,23 @@
 import requests
 import codecs
 from bs4 import BeautifulSoup as BS
+from random import randint
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:47.0) Gecko/20100101 Firefox/47.0',
-           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+__all__ = ('work', 'rabota', 'dou', 'hh')
+
+headers = [
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:47.0) Gecko/20100101 Firefox/47.0',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'},
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+    ]
 
 
 def work(url):
     jobs = []
     errors = []
     domain = 'https://www.work.ua'
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0,1)])
 
     if resp.status_code == 200:
         soup = BS(resp.content, 'html.parser')
@@ -43,7 +50,7 @@ def rabota(url):
     errors = []
     domain = 'https://rabota.ua'
 
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0,1)])
 
     if resp.status_code == 200:
         soup = BS(resp.content, 'html.parser')
@@ -81,7 +88,7 @@ def dou(url):
     jobs = []
     errors = []
     # domain = 'https://jobs.dou.ua/vacancies/?category=Python&search=%D0%BA%D0%B8%D0%B5%D0%B2'
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0,1)])
 
     if resp.status_code == 200:
         soup = BS(resp.content, 'html.parser')
@@ -114,7 +121,7 @@ def hh(url):
     jobs = []
     errors = []
     # domain = 'https://voronezh.hh.ru/search/vacancy?area=26&clusters=true&enable_snippets=true&ored_clusters=true&search_field=name&search_field=company_name&text=Python&order_by=publication_time&hhtmFrom=vacancy_search_list'
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0,1)])
 
     if resp.status_code == 200:
         soup = BS(resp.content, 'html.parser')
@@ -157,6 +164,6 @@ if __name__ == '__main__':
     # url = 'https://www.work.ua/ru/jobs-kyiv-python'
     # jobs, errors = work(url)
 
-    h = codecs.open('work.txt', 'w', 'utf-8')
+    h = codecs.open('../work.txt', 'w', 'utf-8')
     h.write(str(jobs))
     h.close()
