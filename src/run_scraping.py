@@ -1,6 +1,5 @@
-import codecs
+import asyncio
 import os, sys
-
 from django.contrib.auth import get_user_model
 from django.db import DatabaseError
 
@@ -9,7 +8,6 @@ sys.path.append(proj)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'scraping_service.settings'
 
 import django
-
 django.setup()
 
 from scraping.parser import *
@@ -18,11 +16,13 @@ from scraping.models import Vacancy, City, Language, Error, Url
 User = get_user_model()
 
 parsers = (
-    (work, 'https://www.work.ua/ru/jobs-kyiv-python/'),
-    (rabota, 'https://rabota.ua/zapros/python/%D0%BA%D0%B8%D0%B5%D0%B2'),
-    (dou, 'https://jobs.dou.ua/vacancies/?category=Python&search=%D0%9A%D0%B8%D0%B5%D0%B2'),
-    (hh, 'https://voronezh.hh.ru/search/vacancy?area=26&clusters=true&enable_snippets=true&ored_clusters=true&search_field=name&search_field=company_name&text=Python&order_by=publication_time&hhtmFrom=vacancy_search_list')
+    (work, 'work'),
+    (rabota, 'rabota'),
+    (dou, 'dou'),
+    (hh, 'hh')
 )
+
+jobs, errors = [], []
 
 
 def get_settings():
@@ -37,27 +37,52 @@ def get_urls(_settings):
     urls = []
     for pair in _settings:
         tmp = {}
-        tmp['ciy'] = pair[0]
+        tmp['city'] = pair[0]
         tmp['language'] = pair[1]
         tmp['url_data'] = url_dct[pair]
         urls.append(tmp)
     return urls
 
-q = get_settings()
-u = get_urls(q)
 
-city = City.objects.filter(slug='kiev').first()
-language = Language.objects.filter(slug='python').first()
+# async def main(value):
+#     func, url, city, language = value
+#     job, err = await loop.run_in_executor(None, func, url, city, language)
+#     errors.extend(err)
+#     jobs.extend(job)
 
-jobs, errors = [], []
+async def main():
+    tasks1 = asyncio.create_task(work(url, city=None, language=None))
+    tasks2 = asyncio.create_task(rabota(url, city=None, language=None))
+    tasks3 = asyncio.create_task(dou(url, city=None, language=None))
+    tasks4 = asyncio.create_task(hh(url, city=None, language=None))
 
-for func, url in parsers:
-    j, e = func(url)
-    jobs += j
-    errors += e
+    await asyncio.gather(tasks1, tasks2, tasks3, tasks4)
+
+settings = get_settings()
+url_list = get_urls(settings)
+
+# loop = asyncio.get_event_loop()
+# # loop = asyncio.get_running_loop()
+#
+#
+# tmp_tasks = [(func, data['url_data'][key], data['city'], data['language'])
+#              for data in url_list
+#              for func, key in parsers]
+#
+# tasks = asyncio.wait([loop.create_task(main(f)) for f in tmp_tasks])
+# loop.run_until_complete(tasks)
+# loop.close()
+
+# tmp_tasks = [(func, data['url_data'][key], data['city'], data['language'])
+#              for data in url_list
+#              for func, key in parsers]
+
+# tasks = asyncio.wait([loop.create_task(main(f)) for f in tmp_tasks])
+
+asyncio.run(main())
 
 for job in jobs:
-    v = Vacancy(**job, city=city, language=language)
+    v = Vacancy(**job)
     try:
         v.save()
     except DatabaseError:
