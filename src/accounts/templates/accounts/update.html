@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h4 class="text-center my-3">Настройки</h4>
+        <form method="POST" action="">{% csrf_token %}
+           <div class="form-group">
+                  {{ form.as_p }}
+           </div>
+           <button type="submit" class="btn btn-primary">Сохранить</button>
+       </form><br>
+        <form method="POST" action="{% url 'accounts:delete' %}">{% csrf_token %}
+            <button type="submit" class="btn btn-danger">Удалить</button>
+       </form>
+    </div>
+</div>
+
+{% endblock %}
