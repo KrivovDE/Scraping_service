@@ -1,4 +1,3 @@
-import asyncio
 import os, sys
 from django.contrib.auth import get_user_model
 from django.db import DatabaseError
