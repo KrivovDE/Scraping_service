@@ -17,5 +17,19 @@
        </form>
     </div>
 </div>
-
+<div class="row my-5">
+    <div class="col-md-8 mx-auto">
+        <p class="text-center my-3">
+            Если на нашем ресурсе, отсутствуют интересующие Вас города и специальности,
+            заполните приведенную форму и укажите Ваши пожелания. После того, как мы добавим необходимые данные,
+            Вы получите письмо на указанный Вами email.
+        </p>
+        <form method="POST" action="{% url 'accounts:contact' %}">{% csrf_token %}
+           <div class="form-group">
+                  {{ contact_form.as_p }}
+           </div>
+           <button type="submit" class="btn btn-primary">Отправить</button>
+       </form>
+    </div>
+</div>
 {% endblock %}
