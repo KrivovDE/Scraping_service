@@ -1,24 +1,20 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
-
 {% block content %}
+{% if object_list %}
+    <h3 class="text-center my-3"> Результаты Вашего запроса.</h3>
     {% for obj in object_list %}
         <div class="card my-3">
           <div class="card-header">
             <a href="{{obj.url}}">{{obj.title}}</a>
           </div>
-          <h4>{{ obj.company}}</h4>
           <div class="card-body">
             <p class="card-text">{{ obj.description}}</p>
+            <p>{{ obj.company}}</p>
             <p class="card-text"> {{ obj.city.name}} | {{ obj.language.name}} | {{ obj.timestamp}}</p>
           </div>
         </div>
-
-    {% empty %}
-              <h3 class="text-center my-3"> По вашему запросу ничего не найдено. </h3>
-     {% endfor %}
-
-{% if object_list %}
+    {% endfor %}
     <div class="row">
         <div class="col">
             <nav aria-label="Page navigation example">
@@ -35,7 +31,6 @@
                           <a class="page-link" href="?city={{city}}&language={{language}}&page={{page}}">{{page}}</a>
                       </li>
                   {% endfor %}
-
                   {% if object_list.has_next %}
                       <li class="page-item">
                         <a class="page-link" href="?city={{city}}&language={{language}}&page={{ object_list.next_page_number }}" aria-label="Next">
@@ -47,8 +42,9 @@
             </nav>
         </div>
     </div>
+    {% else %}
+        <h3 class="text-center my-3"> По вашему запросу ничего не найдено. </h3>
 {% endif %}
-
 <div class="row">
     <div class="col-md-6 mx-auto">
         <form method="GET" action="{% url 'list' %}">
@@ -59,5 +55,4 @@
        </form>
     </div>
 </div>
-
 {% endblock %}

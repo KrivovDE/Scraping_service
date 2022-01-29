@@ -24,12 +24,23 @@
             заполните приведенную форму и укажите Ваши пожелания. После того, как мы добавим необходимые данные,
             Вы получите письмо на указанный Вами email.
         </p>
-        <form method="POST" action="{% url 'accounts:contact' %}">{% csrf_token %}
-           <div class="form-group">
-                  {{ contact_form.as_p }}
-           </div>
-           <button type="submit" class="btn btn-primary">Отправить</button>
-       </form>
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapsed"
+                  aria-expanded="false" aria-controls="collapseExample">Показать форму
+          </button>
+        </p>
+        <div class="collapse" id="collapsed">
+          <div class="card card-body">
+            <form method="POST" action="{% url 'accounts:contact' %}">{% csrf_token %}
+               <div class="form-group">
+                      {{ contact_form.as_p }}
+               </div>
+               <button type="submit" class="btn btn-primary">Отправить</button>
+           </form>
+          </div>
+        </div>
+
+
     </div>
 </div>
 {% endblock %}
