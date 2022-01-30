@@ -11,17 +11,23 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'scraping_service.settings'
 import django
 django.setup()
 
-from scraping.parser import *
+# from scraping.parser import *
+from scraping.parsers_2 import *
 from scraping.models import Vacancy, City, Language, Error, Url
 
 User = get_user_model()
 
+# parsers = (
+#     (work, 'work'),
+#     (rabota, 'rabota'),
+#     (dou, 'dou'),
+#     (hh, 'hh')
+# )
 parsers = (
-    (work, 'work'),
-    (rabota, 'rabota'),
-    (dou, 'dou'),
-    (hh, 'hh')
-)
+    (hh_vrn_py, 'hh_vrn_py'),
+    (sj_vrn_py, 'sj_vrn_py'),
+    (ha_vrn_py, 'ha_vrn_py')
+    )
 
 
 def get_settings():
