@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Alef';
+    src: url(../fonts/Alef-Bold.ttf);
+}
+#brand {
+    font-family: 'Alef', sans-serif;
+    color: #025;
+}
+
+.nav-link {
+    font-family: 'Alef', sans-serif;
+    color: #025;
+}

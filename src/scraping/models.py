@@ -3,17 +3,8 @@ from django.db import models
 from scraping.punto_switcher import from_cyrillic_to_eng
 
 
-# def default_urls():
-#     return {'work': '',
-#             'rabota': '',
-#             'dou': '',
-#             'hh': ''
-#             }
 def default_urls():
-    return {'hh_vrn_py': '',
-            'sj_vrn_py': '',
-            'ha_vrn_py': ''
-            }
+    return {'head_hunter': '', 'super_job': '', 'career_habr': ''}
 
 
 class City(models.Model):
