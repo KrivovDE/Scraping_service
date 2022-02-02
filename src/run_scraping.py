@@ -12,7 +12,7 @@ import django
 django.setup()
 
 from scraping.parser import head_hunter, super_job, career_habr
-from scraping.models import Vacancy, Error, Url, City
+from scraping.models import Vacancy, Error, Url
 
 User = get_user_model()
 
@@ -61,6 +61,8 @@ for job in jobs:
         v.save()
     except DatabaseError:
         pass
+
+
 if errors:
     qs = Error.objects.filter(timestamp=dt.date.today())
     if qs.exists():
@@ -69,6 +71,7 @@ if errors:
         err.save()
     else:
         er = Error(data=f'errors:{errors}').save()
+
 
 ten_days_ago = dt.date.today() - dt.timedelta(14)
 Vacancy.objects.filter(timestamp__lte=ten_days_ago).delete()

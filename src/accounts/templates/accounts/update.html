@@ -1,46 +1,41 @@
 {% extends "base.html" %}
 {% block title %} Register {% endblock %}
-
 {% block content %}
-
 <div class="row">
     <div class="col-md-8 mx-auto">
-        <h4 class="text-center my-3">Настройки</h4>
+        <h4 class="text-center my-3" id="h4-reg-done">НАСТРОЙКИ</h4>
         <form method="POST" action="">{% csrf_token %}
            <div class="form-group">
                   {{ form.as_p }}
            </div>
-           <button type="submit" class="btn btn-primary">Сохранить</button>
+           <button type="submit" class="btn btn-primary" id="button-register">СОХРАНИТЬ</button>
        </form><br>
         <form method="POST" action="{% url 'accounts:delete' %}">{% csrf_token %}
-            <button type="submit" class="btn btn-danger">Удалить</button>
+            <button type="submit" class="btn btn-danger" id="button-updata">УДАЛИТЬ ПОЛЬЗОВАТЕЛЯ</button>
        </form>
     </div>
 </div>
 <div class="row my-5">
     <div class="col-md-8 mx-auto">
-        <p class="text-center my-3">
-            Если на нашем ресурсе, отсутствуют интересующие Вас города и специальности,
-            заполните приведенную форму и укажите Ваши пожелания. После того, как мы добавим необходимые данные,
-            Вы получите письмо на указанный Вами email.
+        <p class="text-center my-3" id="p-reg-done">
+            Если Вы не нашли интерисующие Вас города и специальности,<br>
+            пожалуйста сообщите нам об этом, в приведенной ниже форме.<br>
         </p>
         <p>
           <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapsed"
-                  aria-expanded="false" aria-controls="collapseExample">Показать форму
+                  aria-expanded="false" aria-controls="collapseExample" id="button-register">ПОКАЗАТЬ ФОРМУ
           </button>
         </p>
         <div class="collapse" id="collapsed">
           <div class="card card-body">
             <form method="POST" action="{% url 'accounts:contact' %}">{% csrf_token %}
-               <div class="form-group">
+               <div class="form-group ">
                       {{ contact_form.as_p }}
                </div>
-               <button type="submit" class="btn btn-primary">Отправить</button>
+               <button type="submit" class="btn btn-primary" id="button-register">ОТПРАВИТЬ</button>
            </form>
           </div>
         </div>
-
-
     </div>
 </div>
 {% endblock %}

@@ -88,7 +88,7 @@ def contact_view(request):
             else:
                 data = [{'city': city, 'language': language, 'email': email}]
                 Error(data=f"user_data:{data}").save()
-            messages.success(request, 'Данные отправлены администрации.')
+            messages.success(request, 'Ваши пожелания приняты')
             return redirect('accounts:update')
         else:
             return redirect('accounts:update')

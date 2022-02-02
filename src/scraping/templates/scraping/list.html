@@ -2,11 +2,11 @@
 {% block title %} Home {% endblock %}
 {% block content %}
 {% if object_list %}
-    <h3 class="text-center my-3"> Результаты Вашего запроса.</h3>
+    <h3 class="text-center my-3" id="h3-list"> РЕЗУЛЬТАТЫ ВАШЕГО ЗАПРОСА</h3><br>
     {% for obj in object_list %}
-        <div class="card my-3">
-          <div class="card-header">
-            <a href="{{obj.url}}">{{obj.title}}</a>
+        <div class="card my-3 class1-list">
+          <div class="card-header class1-2-list">
+            <a href="{{obj.url}}" class="class2-list">{{obj.title}}</a>
           </div>
           <div class="card-body">
             <p class="card-text">{{ obj.description}}</p>
@@ -16,9 +16,9 @@
         </div>
     {% endfor %}
     <div class="row">
-        <div class="col">
+        <div class="col example">
             <nav aria-label="Page navigation example">
-              <ul class="pagination">
+              <ul class="pagination justify-content-center pagination-color:#00FF00">
                   {% if object_list.has_previous %}
                       <li class="page-item">
                           <a class="page-link" href="?city={{city}}&language={{language}}&page=1" aria-label="Previous">
@@ -43,15 +43,15 @@
         </div>
     </div>
     {% else %}
-        <h3 class="text-center my-3"> По вашему запросу ничего не найдено. </h3>
+        <h3 class="text-center my-3" id="nun-info"> ПO ВАШЕМУ ЗАПРОСУ НИЧЕГО НЕ НАЙДЕНО </h3>
 {% endif %}
 <div class="row">
     <div class="col-md-6 mx-auto">
         <form method="GET" action="{% url 'list' %}">
-           <div class="form-group">
+           <div class="form-group form-list">
                   {{ form.as_p }}
            </div>
-    <button type="submit" class="btn btn-primary">Найти</button>
+    <button type="submit" class="btn btn-primary button-list">ПОИСК</button>
        </form>
     </div>
 </div>
