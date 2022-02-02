@@ -1,24 +1,28 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
-
 {% block content %}
 <div class="row">
     <div class="col">
-        <h2 class="text-center my-3">
-            Сервис по сбору и рассылке вакансий
-        </h2>
+        <h2 class="my-3" id="brand-home1">РАБОТА В IT</h2>
+        <h4 class="my-2" id="brand-home2">
+            - лучший сервис для поиска высокооплачиваемой работы<br>
+            - ежедневные уведомления о самых свежих вакансиях<br>
+            - простота в использовании<br>
+            - Вы обязательно найдете свою работу здесь<br><br>
+        </h4>
     </div>
 </div>
 <div class="row">
     <div class="col-md-8 mx-auto">
-        <h4 class="my-2">Для просмотра вакансий, заполните форму по одному из полей</h4>
+        <h4 class="my-2" id="brand-home3">Для просмотра вакансий,<br>
+            выберите город и специальность<br>
+        </h4><br>
         <form method="GET" action="{% url 'list' %}">
-           <div class="form-group">
+           <div class="form-group" id="div-home">
                   {{ form.as_p }}
            </div>
-    <button type="submit" class="btn btn-primary">Найти</button>
+    <button type="submit" class="btn btn-primary" id="button-home">ПОИСК</button>
        </form>
     </div>
 </div>
-
 {% endblock %}

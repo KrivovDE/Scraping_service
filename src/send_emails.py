@@ -24,6 +24,7 @@ empty = '<h2>Новая информация на сегодня отсутст�
 User = get_user_model()
 qs = User.objects.filter(send_email=True).values('city', 'language', 'email')
 user_dct = {}
+
 for i in qs:
     user_dct.setdefault((i['city'], i['language']), [])
     user_dct[(i['city'], i['language'])].append(i['email'])
@@ -50,6 +51,8 @@ if user_dct:
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(_html, "text/html")
             msg.send()
+
+
 qs = Error.objects.filter(timestamp=today)
 subject = ''
 text_content = ''
@@ -57,12 +60,12 @@ to = ADMIN_USER
 _html = ''
 if qs.exists():
     error = qs.first()
-    data = error.data.get(['errors'], [])
+    data = error.data['errors']
     for i in data:
         _html += f'<h5><a href="{ i["url"] }">Error: { i["title"] }</a></h5>'
         subject += f' Ошибки скрапинга {today}'
         text_content += f' Ошибки скрапинга {today}'
-    data = error.data.get(['user_data'])
+        data = error.data['user_data']
     if data:
         _html += '<hr>'
         _html += '<h2>Пожелания пользователей</h2>'
@@ -84,15 +87,3 @@ if subject:
     msg = EmailMultiAlternatives(_html, text_content, from_email, [to])
     msg.attach_alternative(_html, "text/html")
     msg.send()
-
-
-
-
-
-
-
-
-
-
-
-

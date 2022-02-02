@@ -3,24 +3,23 @@ from django.contrib.auth import get_user_model
 from django.db import DatabaseError
 import datetime as dt
 
-
 proj = os.path.dirname(os.path.abspath('manage.py'))
 sys.path.append(proj)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'scraping_service.settings'
 
 import django
+
 django.setup()
 
-from scraping.parser import *
-from scraping.models import Vacancy, City, Language, Error, Url
+from scraping.parser import head_hunter, super_job, career_habr
+from scraping.models import Vacancy, Error, Url
 
 User = get_user_model()
 
 parsers = (
-    (work, 'work'),
-    (rabota, 'rabota'),
-    (dou, 'dou'),
-    (hh, 'hh')
+    (head_hunter, 'head_hunter'),
+    (super_job, 'super_job'),
+    (career_habr, 'career_habr')
 )
 
 
@@ -62,6 +61,8 @@ for job in jobs:
         v.save()
     except DatabaseError:
         pass
+
+
 if errors:
     qs = Error.objects.filter(timestamp=dt.date.today())
     if qs.exists():
@@ -71,6 +72,6 @@ if errors:
     else:
         er = Error(data=f'errors:{errors}').save()
 
+
 ten_days_ago = dt.date.today() - dt.timedelta(14)
 Vacancy.objects.filter(timestamp__lte=ten_days_ago).delete()
-

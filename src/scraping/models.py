@@ -4,7 +4,7 @@ from scraping.punto_switcher import from_cyrillic_to_eng
 
 
 def default_urls():
-    return {'work': '', 'rabota': '', 'dou': '', 'hh': ''}
+    return {'head_hunter': '', 'super_job': '', 'career_habr': ''}
 
 
 class City(models.Model):

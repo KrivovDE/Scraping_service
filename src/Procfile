@@ -1,1 +1,1 @@
-web: gunicorn scraping_servise.wsgi
+web: gunicorn scraping_service.wsgi

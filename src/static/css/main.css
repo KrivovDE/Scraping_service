@@ -1,8 +1,149 @@
-@font-face {
-    font-family: 'Wendy One';
-    src: url(../fonts/WendyOne-Regular.ttf);
+#a-list1{
+    color: #ab6837;
+    border: 1px solid #27282c;
+    font-weight: bold;
 }
-#brand {
-    font-family: 'Wendy One', sans-serif;
-    color: #FF5;
+#a-list2{
+    color: #ab6837;
+    border: 1px solid #27282c;
+}
+#a-list3{
+    color: #ab6837;
+    border: 1px solid #27282c;
+}
+#a-list4{
+    color: #ab6837;
+    border: 1px solid #27282c;
+}
+#a-list5{
+    color: #ab6837;
+    border: 1px solid #27282c;
+}
+#brand-home1{
+    color: #ab6837;
+    text-align: center;
+}
+#brand-home2{
+    color: #406a3e;
+}
+#brand-home3{
+   color: #ab6837;
+    text-align: center;
+}
+#button-home{
+    background: #305d84;
+    color: #ffffff;
+    font-weight: bold;
+}
+#div-home{
+    background: #27282c;
+}
+#h3-list{
+    color: #ab6837;
+}
+.class1-list{
+    background: #46484a;
+    color: #c5a86a;
+    border: 2px solid #b3b6b8;
+}
+.class2-list {
+    color: #4a77a6;
+    font-size: 18px;
+}
+.example .pagination>li>a,
+.example .pagination>li>span {
+    border: 1px solid #b3b6b8;
+    color: #406a3e;
+    font-weight: bold;
+    background:  #46484a;
+}
+.example .pagination>li.active>a {
+    background: #305d84;
+    color:  #ffffff;
+}
+#nun-info{
+    color: #ab6837;
+    text-align: center;
+}
+.form-list{
+    color: #406a3e;
+}
+.button-list{
+    background: #305d85;
+    color:  #ffffff;
+}
+#h4-login{
+    color: #ab6837;
+    text-align: center;
+}
+#button-login{
+    background: #305d84;
+    color: #ffffff;
+    font-weight: bold;
+}
+#h4-register{
+    color: #ab6837;
+    text-align: center;
+}
+#button-register{
+    background: #305d84;
+    color: #ffffff;
+    font-weight: bold;
+}
+#h4-reg-done{
+    color: #ab6837;
+    text-align: center;
+}
+#p-reg-done{
+    color: #406a3e;
+    font-size: 18px;
+}
+#button-updata{
+    background: #6e4347;
+    color: #ffffff;
+    font-weight: bold;
+}
+.form-control{
+    background:  #46484a;
+}
+p label{
+    color: #406a3e;
+    font-size: 18px;
+}
+select option{
+    color: #406a3e;
+}
+#id_email{
+    background:  #46484a;
+    color: #406a3e;
+    border: 1px solid #406a3e;
+}
+#id_password{
+    background:  #46484a;
+    color: #406a3e;
+    border: 1px solid #406a3e;
+}
+#id_password2{
+    background:  #46484a;
+    color: #406a3e;
+    border: 1px solid #406a3e;
+}
+#id_language{
+    background:  #46484a;
+    color: #406a3e;
+    border: 1px solid #406a3e;
+}
+#id_city{
+    background:  #46484a;
+    color: #406a3e;
+    border: 1px solid #406a3e;
+}
+.card-body{
+    background:  #46484a;
+}
+.errorlist{
+    font-size: 18px;
+    background: #6e4347;
+    color: #ffffff;
+    font-weight: bold;
 }
