@@ -5,3 +5,8 @@
 [![codewars](https://www.codewars.com/users/Dmitrii%20Krivov/badges/large)](https://www.codewars.com/users/Dmitrii%20Krivov)
 
 <h1 align="center"><a href="https://job-in-it.herokuapp.com/" target="_blank">Scraping_service</a> 
+  <h2>Технологии</h2>
+  <h3>Python 3.10</h3>
+  <h3>Django 4.0.1</h3>
+  <h3>Beautifulsoup 4.10.0</h3>
+  <h3>Requests 2.27.1</h3>
