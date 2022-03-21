@@ -2,4 +2,4 @@
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 <h3 align="center">Я разработчик backend Web-сервисов на Python</h3>
 
-<p align="center">[![codewars](https://www.codewars.com/users/Dmitrii%20Krivov/badges/large)](https://www.codewars.com/users/Dmitrii%20Krivov)</p>
+[![codewars](https://www.codewars.com/users/Dmitrii%20Krivov/badges/large)](https://www.codewars.com/users/Dmitrii%20Krivov)
